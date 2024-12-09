@@ -1,0 +1,30 @@
+### Recuperar todas las peliculas
+GET http://localhost:3000/movies
+
+### Recuperar una pelicula
+GET http://localhost:3000/movies/0c46df4a-a77d-4bde-8416-7cba8e8e4876
+
+### Recuperar peliculas por género
+GET http://localhost:3000/movies?genre=fantasy
+
+### Crear una nueva pelicula
+POST http://localhost:3000/movies
+Content-Type: application/json
+
+{
+    "title": "Age of Ultron",
+    "year": 2015,
+    "director": "Bryan Singer",
+    "duration": 142,
+    "poster": "https://m.media-amazon.com/images/M/MV5BODBhYTg1NGQtNGVmNS00ZTdiLThjYTYtZDFkNzRiNTZmNDZjXkEyXkFqcGc@._V1_.jpg",
+    "genre": ["Action", "Adventure", "Sci-Fi"],
+    "rate": 9.3
+}
+
+### Actualizar una pelicula
+PATCH  http://localhost:3000/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+Content-Type: application/json
+
+{
+    "year": 1915
+}

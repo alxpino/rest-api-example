@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+    article {
+      width: 300px;
+      margin: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      width: 200px;
+    }
+  </style>
+  <script type="module">
+    fetch('http://localhost:3000/movies')
+      .then(res => res.json())
+      .then(movies => {
+        const html = movies.map(
+          movie => {
+            return `
+              <article data-id="${movie.id}">
+                <h2>${movie.title}</h2>
+                <p>${movie.year}</p>
+                <p>${movie.director}</p>
+                <li>${movie.genre}</li>
+                <img src="${movie.poster}" alt="${movie.title}">
+                <button>Delete</button>
+              </article>
+            `
+          })
+          document.querySelector('main').innerHTML = html.join('')
+          document.addEventListener('click', e => {
+            if(e.target.matches('button')){
+              e.preventDefault()
+              const art = document.querySelector(`[data-id="${e.target.parentNode.dataset.id}"]`)
+              const idArticle = e.target.parentNode.dataset.id
+              fetch(`http://localhost:3000/movies/${idArticle}`, {
+                method: 'DELETE'
+              })
+              .then(res => {
+                  if(res.ok){
+                    art.remove()
+                  }
+                })
+            }
+          })
+      })
+      
+  </script>
+</head>
+<body>
+  <main></main>
+  
+</body>
+</html>
