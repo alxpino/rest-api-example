@@ -28,7 +28,7 @@ app.use(cors({
 
 const ACCEPTED_ORIGINS = [
     'http://localhost:8080',
-    'http://localhost:3010'
+    'http://localhost:3000'
 ]
 
 app.get('/movies', (req, res) => {
@@ -136,6 +136,10 @@ app.options('/movies/:id', (req, res) => {
         res.sendStatus(403).json({ message: 'Origin not allowed' })
         return
     }
+})
+
+app.get('/web/index', (req, res) => { 
+    res.status(200).sendFile(__dirname + '/web/index.html')
 })
 
 app.listen(PORT, () => {
