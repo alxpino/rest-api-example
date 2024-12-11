@@ -2,7 +2,7 @@
 GET http://localhost:3000/movies
 
 ### Recuperar una pelicula
-GET http://localhost:3000/movies/0c46df4a-a77d-4bde-8416-7cba8e8e4876
+GET http://localhost:3000/movies/5ad1a235-0d9c-410a-b32b-220d91689a08
 
 ### Recuperar peliculas por género
 GET http://localhost:3000/movies?genre=fantasy
@@ -21,10 +21,13 @@ Content-Type: application/json
     "rate": 9.3
 }
 
+### Eliminar una pelicula
+DELETE http://localhost:3000/movies/5ad1a235-0d9c-410a-b32b-220d91689a08   
+
 ### Actualizar una pelicula
-PATCH  http://localhost:3000/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+PATCH  http://localhost:3000/movies/5ad1a235-0d9c-410a-b32b-220d91689a08
 Content-Type: application/json
 
 {
-    "year": 1915
+    "year": 1978
 }
